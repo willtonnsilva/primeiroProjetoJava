@@ -1,0 +1,21 @@
+#pesquisa-produto{
+	margin-top: 10px;
+}
+
+#produto_id{
+	width: 25%;
+}
+
+.desativa-tabela{
+	
+	display: none;
+}
+
+#erro-requisição{
+	text-align: center;
+	color: red;
+}
+
+.esconde-avisos{
+	display: none;
+}
