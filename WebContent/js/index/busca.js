@@ -2,7 +2,7 @@ $("#pesquisa-produto").click(function() {
 	console.log("ajax");
 	var id = $("#produto_id").val();
 	$.ajax({
-		url : 'http://localhost:8080/vraptor-produtos/produto/' + id,
+		url : 'http://localhost:8080/vraptor-produto/produto/' + id,
 		method : 'GET',
 		dataType : 'json',
 		success : function(json) {
