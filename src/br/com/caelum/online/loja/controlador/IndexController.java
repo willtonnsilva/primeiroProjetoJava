@@ -14,11 +14,11 @@ import br.com.caelum.vraptor.view.Results;
 @Resource
 public class IndexController {
 
-	private ProdutoDao produtos;
+	private ProdutoDao produtoDao;
 	private Result result;
 	
 	public IndexController(Result result){
-		this.produtos = new ProdutoDao();
+		this.produtoDao = new ProdutoDao();
 		this.result = result;
 	}
 		
@@ -31,7 +31,7 @@ public class IndexController {
 	@Post
 	@Path("/produto/salva")
 	public void salva(Produto produto){
-		produtos.salva(produto);
+		produtoDao.salva(produto);
 		 result.redirectTo(IndexController.class).lista();
 	}
 	
@@ -39,7 +39,7 @@ public class IndexController {
 	@Path("/produto/lista")
 	public List<Produto> lista(){
 
-		return produtos.pegaTodos();
+		return produtoDao.pegaTodos();
 	}
 	
 	@Get
@@ -54,11 +54,25 @@ public class IndexController {
 	}
 	
 	@Get
+	@Path("/produto/pegaxml")
+	public void pegaxml() {
+	}
+	
+	@Get
 	@Path("/produto/{id}")
 	public void retornaJson(long id){
-		Produto produto= produtos.pegaPorId(id);
+		Produto produto= produtoDao.pegaPorId(id);
 		if (produto!=null){
 			result.use(Results.json()).withoutRoot().from(produto).serialize();
+		}
+	}
+	
+	@Get	
+	@Path("/produto/xml")
+	public void retornaXML(Produto produto){
+		produto = produtoDao.pegaPorId(produto.getId());
+		if (produto!=null){
+			result.use(Results.xml()).from(produto).serialize();
 		}
 	}
 }

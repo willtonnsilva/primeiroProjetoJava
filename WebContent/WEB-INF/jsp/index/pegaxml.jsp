@@ -4,10 +4,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="../jquery/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/fom.css">
 <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../css/busca.css">
 </head>
 <body>
 	<div class="container">
@@ -26,40 +28,28 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="<c:url value='/'/>">Inicio</a></li>
-					<li><a href="<c:url value='/produto/lista'/>">Listar Produtos</a></li>
-					<li><a href="<c:url value='/produto/buscar'/>">Buscar por Produto</a></li>
-					<li><a href="<c:url value='/produto/pegaxml'/>">Buscar XML</a></li>
+					<li><a href="#">Inicio</a></li>
+					<li><a href="<c:url value='/produto/lista'/>">Listar
+							Produtos</a></li>
+					<li><a href="<c:url value='/produto/buscar'/>">Buscar por
+							Produto</a></li>
 					<li><a href="<c:url value='/produto/sobre'/>">Sobre Nós</a></li>
 				</ul>
 			</div>
-		</div>
+		 </div>
 		</nav>
-
+		<h2>XML por produto</h2>
 		<div class="form-group">
+		<form method="get" action="<c:url value='/produto/xml'/>">
 			<div">
 				<label for="produto_id">Código do Produto</label> 
-				<input type="text" id="produto_id" class="form-control">
-				<button class="btn btn-primary" id="pesquisa-produto" type="button">Pesquisar</button>
+				<input type="text" name="produto.id" class="form-control">
+				<button class="btn btn-primary" id="pesquisa-produto" type="submit">Pesquisar</button>
 			</div>
-		</div>
-
-		<div id="tabela-resultado" class="container desativa-tabela">
-			<table id="tabela-principal" class="table table-hover">
-				<tr>
-					<th>Código</th>
-					<th>Nome</th>
-					<th>Descrição</th>
-					<th>Preço</th>
-				</tr>
-			</table>
-		</div>
-		<div >
-			<p class="esconde-avisos" esconde-avisos id="erro-requisição">Produto não encontrado!</p>
+		</form>
 		</div>
 	</div>
-	
 </body>
-<script src="../jquery/jquery.js"></script>
-<script src="../js/index/busca.js"></script>
+<script type="text/javascript"
+	src="<c:url value='../bootstrap/js/bootstrap.min.js'/>"></script>
 </html>

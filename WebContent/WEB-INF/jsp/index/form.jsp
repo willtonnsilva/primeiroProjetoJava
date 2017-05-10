@@ -29,6 +29,7 @@ pageEncoding="utf-8"%>
 						<li><a href="#">Inicio</a></li>
 						<li><a href="<c:url value='/produto/lista'/>">Listar Produtos</a></li>
 						<li><a href="<c:url value='/produto/buscar'/>">Buscar por Produto</a></li>
+						<li><a href="<c:url value='/produto/pegaxml'/>">Buscar XML</a></li>
 						<li><a href="<c:url value='/produto/sobre'/>">Sobre Nós</a></li>
 					</ul>
 				</div>
