@@ -2,7 +2,8 @@ package br.com.caelum.online.loja.controlador;
 
 import java.util.List;
 
-import br.com.caelum.online.loja.dao.ProdutoDao;
+import br.com.caelum.online.loja.dao.Prod;
+import br.com.caelum.online.loja.dao.ProdDAO;
 import br.com.caelum.online.loja.dominio.Produto;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -14,25 +15,24 @@ import br.com.caelum.vraptor.view.Results;
 @Resource
 public class IndexController {
 
-	private ProdutoDao produtoDao;
+	private ProdDAO produtoDao;
 	private Result result;
 	
-	public IndexController(Result result){
-		this.produtoDao = new ProdutoDao();
+	public IndexController(Result result, ProdDAO produtoDao){
+		//this.produtoDao = produtoDao;
 		this.result = result;
+		this.produtoDao = produtoDao;
 	}
 		
-	@Path("/")
-	@Get
+	@Get("/")	
 	public void form() {
 		System.out.println("Meu sistema com vraptor");
 	}
 	
-	@Post
-	@Path("/produto/salva")
+	@Post("/produto/salva")
 	public void salva(Produto produto){
 		produtoDao.salva(produto);
-		 result.redirectTo(IndexController.class).lista();
+		result.redirectTo(IndexController.class).lista();
 	}
 	
 	@Get
