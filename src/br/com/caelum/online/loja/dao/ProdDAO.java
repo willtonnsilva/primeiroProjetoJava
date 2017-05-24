@@ -1,11 +1,8 @@
 package br.com.caelum.online.loja.dao;
 
 
-import java.util.Collections;
 import java.util.List;
-
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import br.com.caelum.online.loja.conexao.ConnectionFactory;
@@ -16,7 +13,6 @@ import br.com.caelum.vraptor.ioc.Component;
 public class ProdDAO implements Prod {
 	
 	private EntityManager manager;
-	
 	public ProdDAO(){	
 		this.manager = new ConnectionFactory().getEntityManager();
 	}
@@ -40,13 +36,18 @@ public class ProdDAO implements Prod {
 	@Override
 	public void remove(Produto produto) {
 		
+		manager.getTransaction().begin();
+		manager.remove(produto);
+		manager.getTransaction().commit();
+		
 	}
+	
 	@Override
 	public Produto pegaPorId(Long id) {
 		
 		manager.getTransaction().begin();
 		Produto produto = manager.find(Produto.class, id);
-		
+		manager.getTransaction().commit();
 		return produto;
 	}
 	
