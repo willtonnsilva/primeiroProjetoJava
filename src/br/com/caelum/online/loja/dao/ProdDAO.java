@@ -15,8 +15,6 @@ import br.com.caelum.vraptor.ioc.Component;
 @Component
 public class ProdDAO implements Prod {
 	
-	
-//	@PersistenceContext(unitName="default")
 	private EntityManager manager;
 	
 	public ProdDAO(){	
@@ -46,7 +44,10 @@ public class ProdDAO implements Prod {
 	@Override
 	public Produto pegaPorId(Long id) {
 		
-		return null;
+		manager.getTransaction().begin();
+		Produto produto = manager.find(Produto.class, id);
+		
+		return produto;
 	}
 	
 	
